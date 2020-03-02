@@ -41,7 +41,7 @@ public class WordSearchSolver{
 					int[] pos=new int[]{i, j};
 					for(int l=1; l<=8; l++){
 						if(search(wordArrayEnd, pos, l)){
-							System.out.println("Starting Letter(x, y): "+pos[1]+", "+pos[0]);
+							System.out.println("Starting Letter(x, y): "+pos[0]+", "+pos[1]);
 							break search;
 						}
 					}
