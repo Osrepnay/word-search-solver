@@ -7,7 +7,7 @@ public class WordSearchSolver{
 	static char[][] puzzle;
 	public static void main(String[] args){
 		Scanner s=new Scanner(System.in);
-		System.out.println("Enter the rows of the word search with no spaces in between the letters, and input an empty line to stop.");
+		System.out.println("Enter the rows of the word search, and input an empty line to stop.");
 		ArrayList<char[]> puzzleTemp=new ArrayList<char[]>();
 		while(true){
 			String line=s.nextLine();
@@ -21,7 +21,7 @@ public class WordSearchSolver{
 		for(int i=0; i<puzzleTemp.size(); i++){
 			puzzle[i]=puzzleTemp.get(i);
 		}
-		System.out.println("Enter the words you want to find, line by line, and input an empty line to stop:");
+		System.out.println("Enter the words you want to find, and input an empty line to stop:");
 		while(true){
 			String word=s.nextLine();
 			if(word.equals("")){
@@ -30,7 +30,7 @@ public class WordSearchSolver{
 			char[] wordArray=word.toCharArray();
 			int[][] positions=new int[wordArray.length][2];
 			int[][] potentialPositions=new int[wordArray.length][2];
-			int[] startingLetter=new int[2];
+			int[] startingLetter=new int[]{-1, -1};
 			search:
 			for(int i=0; i<puzzle.length; i++){
 				for(int j=0; j<puzzle[0].length; j++){
@@ -41,17 +41,19 @@ public class WordSearchSolver{
 					int[] pos=new int[]{i, j};
 					for(int l=1; l<=8; l++){
 						if(search(wordArrayEnd, pos, l)){
-							System.out.println("Starting Letter(x, y): "+pos[0]+", "+pos[1]);
+							System.out.println("Starting Letter(x, y): "+pos[1]+", "+pos[0]);
 							break search;
 						}
 					}
 				}
 			}
+			if(startingLetter[0]=-1){
+				System.out.println("Could not find word.");
+			}
 		}
 	}
 	//direction 1=left, 2=left-up, 3=up, etc.
 	public static boolean search(char[] word, int[] pos, int direction){
-		boolean containsWord=false;
 		switch(direction){
 			case 1:
 				if(pos[1]-1>=0 && puzzle[pos[0]][pos[1]-1]==word[0]){
