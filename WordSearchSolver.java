@@ -30,7 +30,7 @@ public class WordSearchSolver{
 			char[] wordArray=word.toCharArray();
 			int[][] positions=new int[wordArray.length][2];
 			int[][] potentialPositions=new int[wordArray.length][2];
-			int[] startingLetter=new int[]{-1, -1};
+			boolean found=false;
 			search:
 			for(int i=0; i<puzzle.length; i++){
 				for(int j=0; j<puzzle[0].length; j++){
@@ -42,12 +42,13 @@ public class WordSearchSolver{
 					for(int l=1; l<=8; l++){
 						if(search(wordArrayEnd, pos, l)){
 							System.out.println("Starting Letter(x, y): "+pos[1]+", "+pos[0]);
+							found=true;
 							break search;
 						}
 					}
 				}
 			}
-			if(startingLetter[0]=-1){
+			if(!found){
 				System.out.println("Could not find word.");
 			}
 		}
